@@ -54,35 +54,29 @@ lint: ## check style with flake8
 	flake8 rl_generator tests
 
 test: ## run tests quickly with the default Python
-	python setup.py test
+	python -m unittest discover -s tests -f -v
 
 test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source rl_generator setup.py test
+	coverage run -m unittest discover -s tests -f -v
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
 
-docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/rl_generator.rst
-	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ rl_generator
-	$(MAKE) -C docs clean
-	$(MAKE) -C docs html
-	$(BROWSER) docs/_build/html/index.html
+#release: dist ## package and upload a release
+#	twine upload dist/*
 
-servedocs: docs ## compile the docs watching for changes
-	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
-
-release: dist ## package and upload a release
-	twine upload dist/*
-
-dist: clean ## builds source and wheel package
+dist: clean rst ## builds source and wheel package
 	python setup.py sdist
 	python setup.py bdist_wheel
 	ls -l dist
 
-install: clean ## install the package to the active Python's site-packages
+install: clean rst ## install the package to the active Python's site-packages
 	python setup.py install
+
+rst: ## make rst file
+	pandoc -f markdown -t rst -o ./AUTHORS.rst AUTHORS.md
+	pandoc -f markdown -t rst -o ./HISTORY.rst HISTORY.md
+	pandoc -f markdown -t rst -o ./README.rst README.md

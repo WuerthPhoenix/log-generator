@@ -1,11 +1,10 @@
-=======
 Credits
 =======
 
 Development Lead
 ----------------
 
-* Fedele Mantuano <mantuano.fedele@gmail.com>
+-  Fedele Mantuano mantuano.fedele@gmail.com
 
 Contributors
 ------------

@@ -7,7 +7,7 @@
 import unittest
 from click.testing import CliRunner
 
-from rl_generator import rl_generator
+# from rl_generator import rl_generator
 from rl_generator import cli
 
 

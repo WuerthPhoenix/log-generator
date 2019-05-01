@@ -1,0 +1,56 @@
+---
+
+# configuration file of single log pattern
+
+# if true this pattern is enabled and it will be used
+enabled: true
+
+# path where store the log. If the path doesn't exist will be created
+path: /tmp/apache.log
+
+# event per seconds for this pattern
+# if specified this value overwrite the common one
+eps: 1
+
+# time period in seconds. This value says how many seconds of logs will be generate
+time_period: 60
+
+# generator types:
+# - raw: it gets raw logs from examples and uses them to make logging
+# - template: it uses a template to generate logs 
+#           (https://docs.python.org/3/library/string.html#custom-string-formatting)
+
+generator_type: raw
+
+# logs of example, to use as documentation or use for random generator in raw generator type
+examples:
+  - 127.0.0.1 - frank [10/Oct/2000:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326
+
+# log template to random generator
+# for replace the timestamp use this table: 
+# https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior
+template: '{ipaddress} - {user} {:[%d/%b/%Y:%H:%M:%S %z]} "{http_method} {http_request} HTTP/1.0" {http_status_code:d} {http_bytes:d}'
+
+fields:
+  ipaddress: func_randip
+  user:
+    - frank
+    - robert
+    - pippo
+    - pluto
+  http_method:
+    - GET
+    - POST
+  http_request:
+    - /apache.gif
+    - /index.html
+    - /forum
+    - /blog
+    - /news
+  http_status_code:
+    - 200
+    - 404
+    - 503
+    - 201
+    - 500
+  http_bytes: func_randnum
