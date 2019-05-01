@@ -53,4 +53,4 @@ fields:
     - 503
     - 201
     - 500
-  http_bytes: func_randnum
+  http_bytes: func_randint 0 1048576

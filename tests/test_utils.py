@@ -24,6 +24,33 @@ class TestUtils(unittest.TestCase):
         self.assertGreaterEqual(number, 1)
         self.assertLessEqual(number, 10)
 
+    def test_randip(self):
+        """Test randip function."""
+        ip = utils.randip()
+        self.assertIsInstance(ip, str)
+        self.assertEqual(len(ip.split(".")), 4)
+
+    def test_get_function(self):
+        """Test get_function function."""
+        func = utils.get_function("func_randip")
+        ip = func()
+        self.assertIsInstance(ip, str)
+        self.assertEqual(len(ip.split(".")), 4)
+
+        func = utils.get_function("func_randint")
+        number = func(1, 10)
+        self.assertGreaterEqual(number, 1)
+        self.assertLessEqual(number, 10)
+
+    def test_exec_function_str(self):
+        """Test exec_function_str function."""
+        ip = utils.exec_function_str("func_randip")
+        self.assertIsInstance(ip, str)
+        self.assertEqual(len(ip.split(".")), 4)
+        number = utils.exec_function_str("func_randint 1 10")
+        self.assertGreaterEqual(number, 1)
+        self.assertLessEqual(number, 10)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
