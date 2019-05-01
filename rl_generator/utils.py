@@ -69,3 +69,23 @@ def exec_function_str(function_str):
         return func()
     else:
         return func(*tokens[1:])
+
+
+def get_random_value(field_value):
+    """Return the random value of field value in pattern configuration
+
+    Arguments:
+        field_value {str/list} -- value of field in pattern configuration
+
+    Raises:
+        ValueError: raised when field value is not valid
+
+    Returns:
+        any -- random value
+    """
+    if isinstance(field_value, str):
+        return exec_function_str(field_value)
+    elif isinstance(field_value, list):
+        return random.choice(field_value)
+    else:
+        raise ValueError('field value can be a string or a list')

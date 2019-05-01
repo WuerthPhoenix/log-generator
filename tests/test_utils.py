@@ -51,6 +51,20 @@ class TestUtils(unittest.TestCase):
         self.assertGreaterEqual(number, 1)
         self.assertLessEqual(number, 10)
 
+    def test_get_random_value(self):
+        """Test get_random_value function."""
+        with self.assertRaises(ValueError):
+            utils.get_random_value({'fake_key': 'fake_value'})
+
+        ip = utils.get_random_value("func_randip")
+        self.assertIsInstance(ip, str)
+        self.assertEqual(len(ip.split(".")), 4)
+
+        value_list = list(range(10))
+        value = utils.get_random_value(value_list)
+        self.assertGreaterEqual(value, 0)
+        self.assertLessEqual(value, 9)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
