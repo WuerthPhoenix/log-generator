@@ -3,10 +3,26 @@
 """Utils module for rl_generator."""
 
 
+import datetime
 import random
 import socket
 import struct
 import sys
+
+import yaml
+
+
+def load_config(yaml_file):
+    """Return a Python object given a YAML file
+
+    Arguments:
+        yaml_file {str} -- path of YAML file
+
+    Returns:
+        obj -- Python object of YAML file
+    """
+    with open(yaml_file, 'r') as f:
+        return yaml.load(f, Loader=yaml.FullLoader)
 
 
 def randint(min_value, max_value):
@@ -89,3 +105,19 @@ def get_random_value(field_value):
         return random.choice(field_value)
     else:
         raise ValueError('field value can be a string or a list')
+
+
+def get_template_log(template, fields):
+    """Return a random log from template string in Python formatting string
+    (https://docs.python.org/3/library/string.html#custom-string-formatting)
+
+    Arguments:
+        template {str} -- template string in Python formatting string
+        fields {[type]} -- dict field from pattern configuration file
+
+    Returns:
+        str -- random log generated from template
+    """
+    values = {k: get_random_value(v) for k, v in fields.items()}
+    now = datetime.datetime.now()
+    return template.format(now, **values)

@@ -14,6 +14,8 @@ class TestUtils(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures, if any."""
+        self.pattern_file = "conf/patterns/apache_commons.yml"
+        self.conf_file = "conf/rl_generator.yml"
 
     def tearDown(self):
         """Tear down test fixtures, if any."""
@@ -64,6 +66,17 @@ class TestUtils(unittest.TestCase):
         value = utils.get_random_value(value_list)
         self.assertGreaterEqual(value, 0)
         self.assertLessEqual(value, 9)
+
+    def test_get_template_log(self):
+        """Test test_get_template_log function."""
+        pattern = utils.load_config(self.pattern_file)
+        log = utils.get_template_log(
+            pattern["template"], pattern["fields"])
+        self.assertIsInstance(log, str)
+        log_new = utils.get_template_log(
+            pattern["template"], pattern["fields"])
+        self.assertNotEqual(log, log_new)
+        self.assertIn("HTTP/1.0", log)
 
 
 if __name__ == '__main__':
