@@ -4,24 +4,37 @@
 """Tests for `rl_generator` package."""
 
 
+import os
 import unittest
+
 from click.testing import CliRunner
 
-# from rl_generator import rl_generator
+from rl_generator import rl_generator, utils
 from rl_generator import cli
 
 
-class TestRl_generator(unittest.TestCase):
-    """Tests for `rl_generator` package."""
+class TestRlGenerator(unittest.TestCase):
+    """Tests for `rl_generator.rl_generator` module."""
 
     def setUp(self):
         """Set up test fixtures, if any."""
+        self.pattern_file = "tests/conf/patterns/apache_commons.yml"
+        self.conf_file = "conf/rl_generator.yml"
+        self.pattern = utils.load_config(self.pattern_file)
 
     def tearDown(self):
         """Tear down test fixtures, if any."""
 
-    def test_000_something(self):
-        """Test something."""
+    def test_log_generator(self):
+        """Test log_generator function."""
+        name = rl_generator.log_generator(self.pattern)
+        self.assertEqual(name, "apache_common")
+        self.assertTrue(os.path.exists("/tmp/apache.log"))
+
+        with open("/tmp/apache.log") as f:
+            lines = len(f.readlines())
+
+        self.assertEqual(lines, 30)
 
     def test_command_line_interface(self):
         """Test the CLI."""

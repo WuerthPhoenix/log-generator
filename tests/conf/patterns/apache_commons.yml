@@ -2,6 +2,8 @@
 
 # configuration file of single log pattern
 
+name: apache_common
+
 # if true this pattern is enabled and it will be used
 enabled: true
 
@@ -10,17 +12,17 @@ path: /tmp/apache.log
 
 # event per seconds for this pattern
 # if specified this value overwrite the common one
-eps: 1
+eps: 10
 
 # time period in seconds. This value says how many seconds of logs will be generate
-time_period: 60
+time_period: 3
 
 # generator types:
 # - raw: it gets raw logs from examples and uses them to make logging
 # - template: it uses a template to generate logs 
 #           (https://docs.python.org/3/library/string.html#custom-string-formatting)
 
-generator_type: raw
+generator_type: template
 
 # logs of example, to use as documentation or use for random generator in raw generator type
 examples:
@@ -38,6 +40,9 @@ fields:
     - robert
     - pippo
     - pluto
+    - paperino
+    - james
+    - alfredo
   http_method:
     - GET
     - POST

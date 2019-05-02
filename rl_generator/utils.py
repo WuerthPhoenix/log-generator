@@ -4,12 +4,16 @@
 
 
 import datetime
+import logging
 import random
 import socket
 import struct
 import sys
 
 import yaml
+
+
+log = logging.getLogger(__name__)
 
 
 def load_config(yaml_file):

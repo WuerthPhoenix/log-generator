@@ -10,12 +10,13 @@ from rl_generator import utils
 
 
 class TestUtils(unittest.TestCase):
-    """Tests for `rl_generator` package."""
+    """Tests for `rl_generator.utils` module."""
 
     def setUp(self):
         """Set up test fixtures, if any."""
-        self.pattern_file = "conf/patterns/apache_commons.yml"
+        self.pattern_file = "tests/conf/patterns/apache_commons.yml"
         self.conf_file = "conf/rl_generator.yml"
+        self.pattern = utils.load_config(self.pattern_file)
 
     def tearDown(self):
         """Tear down test fixtures, if any."""
@@ -69,12 +70,11 @@ class TestUtils(unittest.TestCase):
 
     def test_get_template_log(self):
         """Test test_get_template_log function."""
-        pattern = utils.load_config(self.pattern_file)
         log = utils.get_template_log(
-            pattern["template"], pattern["fields"])
+            self.pattern["template"], self.pattern["fields"])
         self.assertIsInstance(log, str)
         log_new = utils.get_template_log(
-            pattern["template"], pattern["fields"])
+            self.pattern["template"], self.pattern["fields"])
         self.assertNotEqual(log, log_new)
         self.assertIn("HTTP/1.0", log)
 
