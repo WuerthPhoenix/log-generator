@@ -39,12 +39,18 @@ def log_generator(pattern_conf):
     time_period = pattern_conf.get("time_period", 60)
     log.debug(f"[{name}] - time period: {time_period}")
     generator_type = pattern_conf.get("generator_type", "raw")
-    print(generator_type)
     log.debug(f"[{name}] - generator type: {generator_type}")
+    remove_file = pattern_conf.get("remove_file", False)
 
     # calculate nr logs and sleep
     nr_logs = eps * time_period
     sleep_time = 1 / eps
+
+    if remove_file:
+        try:
+            os.remove(path)
+        except OSError:
+            pass
 
     # create folder log
     if not os.path.exists(log_path):
@@ -55,8 +61,8 @@ def log_generator(pattern_conf):
         log.debug(f"[{name}] - template: {template}")
         fields = pattern_conf["fields"]
 
-        with open(path, "w") as f:
-            for i in range(nr_logs):
+        for i in range(nr_logs):
+            with open(path, "a") as f:
                 log_str = utils.get_template_log(template, fields)
                 f.write(log_str + "\n")
                 time.sleep(sleep_time)

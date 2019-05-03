@@ -5,12 +5,10 @@ Generator of random logs for multiple types of technologies.
 
 ## Features
 
-TBD
+ - Random logging from template
 
 
 ## TODO
 
  - Generate logs from raw examples
- - Generate logs from from regex
  - Generate logs from kv
- - Random IP addresses generator
