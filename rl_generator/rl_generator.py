@@ -3,17 +3,21 @@
 """Main module."""
 
 
+import glob
 import logging
 import os
 import time
 
-# from tqdm import tqdm
+from concurrent import futures
+
+from tqdm import trange
 
 from . import utils
 
 
 TEMPLATE = "template"
 RAW = "raw"
+MAX_CONCUR_REQ = 100
 
 
 log = logging.getLogger(__name__)
@@ -61,9 +65,46 @@ def log_generator(pattern_conf):
         log.debug(f"[{name}] - template: {template}")
         fields = pattern_conf["fields"]
 
-        for i in range(nr_logs):
+        for i in trange(nr_logs, desc=f"{name} logs loop"):
             with open(path, "a") as f:
                 log_str = utils.get_template_log(template, fields)
                 f.write(log_str + "\n")
                 time.sleep(sleep_time)
     return name
+
+
+def core(path_patterns, max_concur_req):
+    """This function runs the core of tool.
+    All threads are generated here. A thread foreach log file.
+
+    Arguments:
+        path_patterns {str} -- path of log patterns
+        max_concur_req {int} -- max concurrent log generator
+    """
+
+    # Load all configuration patterns
+    patterns = {
+        os.path.basename(i): utils.load_config(i) for i in glob.iglob(
+            os.path.join(path_patterns, "*.yml"))}
+    # filter patterns not enabled
+    patterns = {k: v for k, v in patterns.items() if v.get("enabled", False)}
+    log.info(f"Loading {len(patterns)} log patterns")
+
+    # calculate max concurrent threads
+    concur_req = int(min(MAX_CONCUR_REQ, len(patterns), max_concur_req))
+    log.info(f"Activate {concur_req} parallel threads")
+
+    with futures.ThreadPoolExecutor(max_workers=concur_req) as executor:
+        for k, v in patterns.items():
+            to_do_map = {}
+            future = executor.submit(log_generator, v)
+            log.info(f"Submitted pattern {k}")
+            to_do_map[future] = k
+
+        # iterator of done futures
+        done_iter = futures.as_completed(to_do_map)
+
+        for future in done_iter:
+            res = future.result()
+            log.info(
+                f"Done random log {res} from patter file {to_do_map[future]}")

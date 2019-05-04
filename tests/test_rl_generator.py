@@ -36,6 +36,9 @@ class TestRlGenerator(unittest.TestCase):
 
         self.assertEqual(lines, 30)
 
+    def test_core(self):
+        pass
+
     def test_command_line_interface(self):
         """Test the CLI."""
         runner = CliRunner()
