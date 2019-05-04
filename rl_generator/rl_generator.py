@@ -30,6 +30,9 @@ def log_generator(pattern_conf):
     Arguments:
         pattern_conf {obj} -- Python object of configuration pattern
 
+    Raises:
+        ValueError: raised when generator_type value is not valid
+
     Returns:
         str -- name of logging pattern
     """
@@ -48,44 +51,61 @@ def log_generator(pattern_conf):
 
     # calculate nr logs and sleep
     nr_logs = eps * time_period
+    log.debug(f"[{name}] - Total logs to generate is {nr_logs}")
     sleep_time = 1 / eps
+    log.debug(f"[{name}] - Sleep time between logs is {sleep_time}")
+
+    progress_bar = pattern_conf.get("progress_bar", False)
 
     if remove_file:
         try:
             os.remove(path)
+            log.debug(f"[{name}] - File {path} removed")
         except OSError:
-            pass
+            log.debug(f"[{name}] - File {path} doesn't exist")
 
     # create folder log
     if not os.path.exists(log_path):
+        log.debug(f"[{name}] - Created path {log_path}")
         os.makedirs(log_path)
 
+    if progress_bar:
+        range_func = trange
+        range_kvargs = {"desc": f"{name} logs loop"}
+    else:
+        range_func = range
+        range_kvargs = {}
+
     if generator_type == TEMPLATE:
+        log.debug(f"[{name}] - Generating logs from template")
         template = pattern_conf["template"]
         log.debug(f"[{name}] - template: {template}")
         fields = pattern_conf["fields"]
 
-        for i in trange(nr_logs, desc=f"{name} logs"):
-            # for i in range(nr_logs):
+        for i in range_func(nr_logs, **range_kvargs):
             with open(path, "a") as f:
                 log_str = utils.get_template_log(template, fields)
                 f.write(log_str + "\n")
                 time.sleep(sleep_time)
     elif generator_type == RAW:
-        pass
+        raise NotImplementedError("Generator type 'raw' is not implemented")
     else:
         raise ValueError(f"Generator type {generator_type} doesn't exist")
 
     return nr_logs
 
 
-def core(path_patterns, max_concur_req):
+def core(path_patterns, max_concur_req, progress_bar=False):
     """This function runs the core of tool.
     All threads are generated here. A thread foreach log file.
 
     Arguments:
         path_patterns {str} -- path of log patterns
         max_concur_req {int} -- max concurrent log generator
+        progress_bar {bool} -- enable/disable progress bar
+
+    Keyword Arguments:
+        progress_bar {bool} -- enable/disable progress bar (default: False)
     """
 
     # Load all configuration patterns
@@ -100,6 +120,14 @@ def core(path_patterns, max_concur_req):
         return 0
 
     log.info(f"Loading {len(patterns)} log patterns")
+
+    # add commons extra values foreach log
+    commons = {
+        'progress_bar': progress_bar}
+
+    for i in patterns:
+        for k, v in commons.items():
+            patterns[i][k] = v
 
     # calculate max concurrent threads
     concur_req = int(min(MAX_CONCUR_REQ, len(patterns), max_concur_req))

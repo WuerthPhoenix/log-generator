@@ -4,9 +4,13 @@
 """Tests for `rl_generator.utils` module."""
 
 
+import logging
 import unittest
 
 from rl_generator import utils
+
+
+logging.getLogger().addHandler(logging.NullHandler())
 
 
 class TestUtils(unittest.TestCase):

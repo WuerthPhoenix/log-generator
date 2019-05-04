@@ -26,6 +26,7 @@ def load_config(yaml_file):
         obj -- Python object of YAML file
     """
     with open(yaml_file, 'r') as f:
+        log.debug(f"Loading file {yaml_file}")
         return yaml.load(f, Loader=yaml.FullLoader)
 
 

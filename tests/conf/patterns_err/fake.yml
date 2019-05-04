@@ -2,7 +2,7 @@
 
 # configuration file of single log pattern
 
-name: apache_common
+name: fake
 
 # if true this pattern is enabled and it will be used
 enabled: true
@@ -18,14 +18,14 @@ remove_file: true
 eps: 10
 
 # time period in seconds. This value says how many seconds of logs will be generate
-time_period: 1
+time_period: 3
 
 # generator types:
 # - raw: it gets raw logs from examples and uses them to make logging
 # - template: it uses a template to generate logs 
 #           (https://docs.python.org/3/library/string.html#custom-string-formatting)
 
-generator_type: template
+generator_type: fake
 
 # logs of example, to use as documentation or use for random generator in raw generator type
 examples:

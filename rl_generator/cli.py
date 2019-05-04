@@ -29,14 +29,20 @@ from .utils import custom_log
     type=click.Choice(
         ['CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG', 'NOTSET']),
     help="Log level on stdout")
-def main(patterns, max_concur_req, log_level):
+@click.option(
+    '--progress-bar/--no-progress-bar',
+    default=False,
+    show_default=True,
+    help="Enable/Disable progress bar")
+def main(patterns, max_concur_req, log_level, progress_bar):
     """Random Logs Generator Tool."""
 
     custom_log(level=log_level)
 
     total_logs = rl_generator.core(
         path_patterns=patterns,
-        max_concur_req=max_concur_req)
+        max_concur_req=max_concur_req,
+        progress_bar=progress_bar)
     print(f"\nGenerated {total_logs} logs")
 
 
