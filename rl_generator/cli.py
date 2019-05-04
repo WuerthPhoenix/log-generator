@@ -3,6 +3,9 @@
 """Console script for rl_generator."""
 
 
+import sys
+from os.path import expanduser, join
+
 import click
 
 from . import rl_generator
@@ -12,7 +15,7 @@ from .utils import custom_log
 @click.command()
 @click.option(
     '--patterns', "-p",
-    default="~/.config/rl_generator/patterns",
+    default=join(expanduser("~"), ".config/rl_generator/patterns"),
     show_default=True,
     type=str,
     help="Path all log patterns files (only *.yml)")
@@ -39,11 +42,14 @@ def main(patterns, max_concur_req, log_level, progress_bar):
 
     custom_log(level=log_level)
 
-    total_logs = rl_generator.core(
-        path_patterns=patterns,
-        max_concur_req=max_concur_req,
-        progress_bar=progress_bar)
-    print(f"\nGenerated {total_logs} logs")
+    try:
+        total_logs = rl_generator.core(
+            path_patterns=patterns,
+            max_concur_req=max_concur_req,
+            progress_bar=progress_bar)
+        print(f"\nGenerated {total_logs} logs")
+    except KeyboardInterrupt:
+        sys.exit(0)
 
 
 if __name__ == "__main__":
