@@ -65,12 +65,18 @@ def log_generator(pattern_conf):
         log.debug(f"[{name}] - template: {template}")
         fields = pattern_conf["fields"]
 
-        for i in trange(nr_logs, desc=f"{name} logs loop"):
+        for i in trange(nr_logs, desc=f"{name} logs"):
+            # for i in range(nr_logs):
             with open(path, "a") as f:
                 log_str = utils.get_template_log(template, fields)
                 f.write(log_str + "\n")
                 time.sleep(sleep_time)
-    return name
+    elif generator_type == RAW:
+        pass
+    else:
+        raise ValueError(f"Generator type {generator_type} doesn't exist")
+
+    return nr_logs
 
 
 def core(path_patterns, max_concur_req):
@@ -88,23 +94,18 @@ def core(path_patterns, max_concur_req):
             os.path.join(path_patterns, "*.yml"))}
     # filter patterns not enabled
     patterns = {k: v for k, v in patterns.items() if v.get("enabled", False)}
+
+    if len(patterns) == 0:
+        log.error("There aren't logs to generate. Check pattern files")
+        return 0
+
     log.info(f"Loading {len(patterns)} log patterns")
 
     # calculate max concurrent threads
     concur_req = int(min(MAX_CONCUR_REQ, len(patterns), max_concur_req))
+
     log.info(f"Activate {concur_req} parallel threads")
 
     with futures.ThreadPoolExecutor(max_workers=concur_req) as executor:
-        for k, v in patterns.items():
-            to_do_map = {}
-            future = executor.submit(log_generator, v)
-            log.info(f"Submitted pattern {k}")
-            to_do_map[future] = k
-
-        # iterator of done futures
-        done_iter = futures.as_completed(to_do_map)
-
-        for future in done_iter:
-            res = future.result()
-            log.info(
-                f"Done random log {res} from patter file {to_do_map[future]}")
+        res = executor.map(log_generator, patterns.values())
+        return sum(res)

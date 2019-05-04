@@ -10,5 +10,7 @@ Generator of random logs for multiple types of technologies.
 
 ## TODO
 
+ - Generate logs from more templates
  - Generate logs from raw examples
  - Generate logs from kv
+ - Send logs on network (ssh)

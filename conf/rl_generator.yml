@@ -1,5 +1,0 @@
----
-
-# main configuration file for Random Log Generator
-
-max_concurrent_generators: 10

@@ -125,3 +125,22 @@ def get_template_log(template, fields):
     values = {k: get_random_value(v) for k, v in fields.items()}
     now = datetime.datetime.now()
     return template.format(now, **values)
+
+
+def custom_log(level="WARNING", name=None):  # pragma: no cover
+    if name:
+        log = logging.getLogger(name)
+    else:
+        log = logging.getLogger()
+    log.setLevel(level)
+    ch = logging.StreamHandler(sys.stdout)
+    formatter = logging.Formatter(
+        "%(asctime)s | "
+        "%(name)s | "
+        "%(module)s | "
+        "%(funcName)s | "
+        "%(levelname)s | "
+        "%(message)s")
+    ch.setFormatter(formatter)
+    log.addHandler(ch)
+    return log

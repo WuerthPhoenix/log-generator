@@ -27,14 +27,15 @@ class TestRlGenerator(unittest.TestCase):
 
     def test_log_generator(self):
         """Test log_generator function."""
-        name = rl_generator.log_generator(self.pattern)
-        self.assertEqual(name, "apache_common")
+        nr_logs = rl_generator.log_generator(self.pattern)
+        self.assertEqual(nr_logs, 30)
         self.assertTrue(os.path.exists("/tmp/apache.log"))
 
         with open("/tmp/apache.log") as f:
             lines = len(f.readlines())
 
         self.assertEqual(lines, 30)
+        self.assertEqual(nr_logs, lines)
 
     def test_core(self):
         pass
@@ -48,3 +49,4 @@ class TestRlGenerator(unittest.TestCase):
         help_result = runner.invoke(cli.main, ['--help'])
         assert help_result.exit_code == 0
         assert '--help  Show this message and exit.' in help_result.output
+        print(runner.invoke(cli.main, ['--patterns']))

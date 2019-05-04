@@ -15,10 +15,10 @@ remove_file: true
 
 # event per seconds for this pattern
 # if specified this value overwrite the common one
-eps: 1000
+eps: 2000
 
 # time period in seconds. This value says how many seconds of logs will be generate
-time_period: 2
+time_period: 1
 
 # generator types:
 # - raw: it gets raw logs from examples and uses them to make logging
