@@ -34,7 +34,9 @@ examples:
 # log template to random generator
 # for replace the timestamp use this table: 
 # https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior
-template: '{:%b  %d %H:%M:%S} ns1 named[{pid}]: client {ipaddress}#{port}: query: {query} IN {dns_type}'
+# You can use more than one template
+template: 
+  - '{:%b  %d %H:%M:%S} ns1 named[{pid}]: client {ipaddress}#{port}: query: {query} IN {dns_type}'
 
 fields:
   ipaddress: func_randip

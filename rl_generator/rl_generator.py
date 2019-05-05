@@ -6,6 +6,7 @@
 import glob
 import logging
 import os
+import random
 import time
 
 from concurrent import futures
@@ -79,9 +80,10 @@ def log_generator(pattern_conf):
 
     if generator_type == TEMPLATE:
         log.debug(f"[{name}] - Generating logs from template")
-        template = pattern_conf["template"]
-        log.debug(f"[{name}] - template: {template}")
         fields = pattern_conf["fields"]
+
+        if not isinstance(pattern_conf["template"], list):
+            raise ValueError("template must be a list of templates")
 
         # Initial conditions to fix sleep time
         wait = 0
@@ -91,6 +93,7 @@ def log_generator(pattern_conf):
             start = time.time()
 
             with open(path, "a") as f:
+                template = random.choice(pattern_conf["template"])
                 log_str = utils.get_template_log(template, fields)
                 f.write(log_str + "\n")
 

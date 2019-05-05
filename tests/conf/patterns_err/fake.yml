@@ -22,7 +22,7 @@ time_period: 3
 
 # generator types:
 # - raw: it gets raw logs from examples and uses them to make logging
-# - template: it uses a template to generate logs 
+# - template: it uses a template to generate logs
 #           (https://docs.python.org/3/library/string.html#custom-string-formatting)
 
 generator_type: fake
@@ -32,7 +32,7 @@ examples:
   - 127.0.0.1 - frank [10/Oct/2000:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326
 
 # log template to random generator
-# for replace the timestamp use this table: 
+# for replace the timestamp use this table:
 # https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior
 template: '{ipaddress} - {user} {:[%d/%b/%Y:%H:%M:%S %z]} "{http_method} {http_request} HTTP/1.0" {http_status_code:d} {http_bytes:d}'
 

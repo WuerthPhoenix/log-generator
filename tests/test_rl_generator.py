@@ -22,7 +22,6 @@ class TestRlGenerator(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures, if any."""
         self.pattern_file = "tests/conf/patterns/apache_commons.yml"
-        self.conf_file = "conf/rl_generator.yml"
         self.pattern = utils.load_config(self.pattern_file)
 
     def tearDown(self):
@@ -39,6 +38,12 @@ class TestRlGenerator(unittest.TestCase):
 
         self.assertEqual(lines, 10)
         self.assertEqual(nr_logs, lines)
+
+        patterns_err = "tests/conf/patterns_err/apache_commons.yml"
+        pattern = utils.load_config(patterns_err)
+
+        with self.assertRaises(ValueError):
+            rl_generator.log_generator(pattern)
 
     def test_core(self):
         patterns_err = "tests/conf/patterns_err"

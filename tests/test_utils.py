@@ -75,10 +75,10 @@ class TestUtils(unittest.TestCase):
     def test_get_template_log(self):
         """Test test_get_template_log function."""
         log = utils.get_template_log(
-            self.pattern["template"], self.pattern["fields"])
+            self.pattern["template"][0], self.pattern["fields"])
         self.assertIsInstance(log, str)
         log_new = utils.get_template_log(
-            self.pattern["template"], self.pattern["fields"])
+            self.pattern["template"][0], self.pattern["fields"])
         self.assertNotEqual(log, log_new)
         self.assertIn("HTTP/1.0", log)
 

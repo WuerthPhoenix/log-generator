@@ -35,7 +35,10 @@ examples:
 # log template to random generator
 # for replace the timestamp use this table: 
 # https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior
-template: '{ipaddress} - {user} {:[%d/%b/%Y:%H:%M:%S %z]} "{http_method} {http_request} HTTP/1.0" {http_status_code:d} {http_bytes:d}'
+# You can use more than one template
+template: 
+  - '{ipaddress} - {user} {:[%d/%b/%Y:%H:%M:%S %z]} "{http_method} {http_request} HTTP/1.0" {http_status_code:d} {http_bytes:d}'
+  - '{ipaddress} - - {:[%d/%b/%Y:%H:%M:%S %z]} "{http_method} {http_request} HTTP/1.0" {http_status_code:d} {http_bytes:d}'
 
 fields:
   ipaddress: func_randip
