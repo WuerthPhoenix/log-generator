@@ -3,8 +3,9 @@
 """Console script for rl_generator."""
 
 
+import runpy
 import sys
-from os.path import expanduser, join
+from os.path import expanduser, join, realpath, dirname
 
 import click
 
@@ -12,7 +13,14 @@ from . import rl_generator
 from .utils import custom_log
 
 
+current = realpath(dirname(__file__))
+
+__version__ = runpy.run_path(
+    join(current, "version.py"))["__version__"]
+
+
 @click.command()
+@click.version_option(version=__version__)
 @click.option(
     '--patterns', "-p",
     default=join(expanduser("~"), ".config/rl_generator/patterns"),
