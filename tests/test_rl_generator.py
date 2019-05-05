@@ -71,3 +71,4 @@ class TestRlGenerator(unittest.TestCase):
         assert '--max-concur-req' in help_result.output
         assert '--log-level' in help_result.output
         assert '--progress-bar' in help_result.output
+        assert '--version' in help_result.output

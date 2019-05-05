@@ -4,7 +4,7 @@
 
 __author__ = """Fedele Mantuano"""
 __email__ = 'mantuano.fedele@gmail.com'
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 
 if __name__ == "__main__":
