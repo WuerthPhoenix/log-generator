@@ -56,7 +56,7 @@ class TestRlGenerator(unittest.TestCase):
     def test_command_line_interface(self):
         """Test the CLI."""
         runner = CliRunner()
-        result = runner.invoke(cli.main)
+        result = runner.invoke(cli.main, ['--patterns', 'fake'])
         assert result.exit_code == 0
         assert "There aren't logs to generate" in result.output
         help_result = runner.invoke(cli.main, ['--help'])
@@ -65,3 +65,4 @@ class TestRlGenerator(unittest.TestCase):
         assert '--patterns' in help_result.output
         assert '--max-concur-req' in help_result.output
         assert '--log-level' in help_result.output
+        assert '--progress-bar' in help_result.output

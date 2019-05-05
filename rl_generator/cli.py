@@ -48,7 +48,7 @@ def main(patterns, max_concur_req, log_level, progress_bar):
             max_concur_req=max_concur_req,
             progress_bar=progress_bar)
         print(f"\nGenerated {total_logs} logs")
-    except KeyboardInterrupt:
+    except KeyboardInterrupt:  # pragma: no cover
         sys.exit(0)
 
 

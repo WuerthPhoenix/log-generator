@@ -70,7 +70,7 @@ def log_generator(pattern_conf):
         log.debug(f"[{name}] - Created path {log_path}")
         os.makedirs(log_path)
 
-    if progress_bar:
+    if progress_bar:  # pragma: no cover
         range_func = trange
         range_kvargs = {"desc": f"{name} logs loop"}
     else:
