@@ -2,6 +2,7 @@
 
 # configuration file of single log pattern
 
+# name of log
 name: apache_common
 
 # if true this pattern is enabled and it will be used
