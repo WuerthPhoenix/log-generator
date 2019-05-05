@@ -3,29 +3,37 @@
 
 """The setup script."""
 
+import os
+import io
+import runpy
 from setuptools import setup, find_packages
 
-with open('README.rst') as readme_file:
-    readme = readme_file.read()
 
-with open('HISTORY.rst') as history_file:
-    history = history_file.read()
+current = os.path.realpath(os.path.dirname(__file__))
 
-requirements = ['Click>=6.0', ]
+with io.open(os.path.join(current, 'README.rst'), encoding="utf-8") as f:
+    long_description = f.read()
 
-setup_requirements = [ ]
+with io.open(os.path.join(current, 'HISTORY.rst'), encoding="utf-8") as f:
+    history = f.read()
 
-test_requirements = [ ]
+with open(os.path.join(current, 'requirements.txt')) as f:
+    requirements = f.read().splitlines()
+
+__version__ = runpy.run_path(
+    os.path.join(current, "rl_generator", "version.py"))["__version__"]
+
 
 setup(
+    name='rl_generator',
     author="Fedele Mantuano",
     author_email='mantuano.fedele@gmail.com',
+    maintainer="Fedele Mantuano",
+    maintainer_email='mantuano.fedele@gmail.com',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
         'Natural Language :: English',
-        "Programming Language :: Python :: 2",
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
@@ -38,16 +46,14 @@ setup(
             'rl_generator=rl_generator.cli:main',
         ],
     },
+    platforms=["Linux"],
     install_requires=requirements,
-    long_description=readme + '\n\n' + history,
+    long_description=long_description + '\n\n' + history,
     include_package_data=True,
-    keywords='rl_generator',
-    name='rl_generator',
+    keywords=['log', 'generator', 'random'],
     packages=find_packages(include=['rl_generator']),
-    setup_requires=setup_requirements,
-    test_suite='tests',
-    tests_require=test_requirements,
+    setup_requires=requirements,
     url='https://github.com/fedelemantuano/rl_generator',
-    version='0.1.0',
+    version=__version__,
     zip_safe=False,
 )
