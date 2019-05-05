@@ -94,11 +94,11 @@ Features
 --------
 
 -  Random logging from template
+-  Template can be a list of more formats
 
 TODO
 ----
 
--  Generate logs from more templates
 -  Generate logs from raw examples
 -  Generate logs from kv
 -  Send logs on network (ssh)
