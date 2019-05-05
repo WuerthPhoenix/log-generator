@@ -53,7 +53,8 @@ def log_generator(pattern_conf):
     nr_logs = eps * time_period
     log.debug(f"[{name}] - Total logs to generate is {nr_logs}")
     sleep_time = 1 / eps
-    log.debug(f"[{name}] - Sleep time between logs is {sleep_time}")
+
+    log.debug(f"[{name}] - Ideal Sleep time between logs is {sleep_time}")
 
     progress_bar = pattern_conf.get("progress_bar", False)
 
@@ -82,11 +83,28 @@ def log_generator(pattern_conf):
         log.debug(f"[{name}] - template: {template}")
         fields = pattern_conf["fields"]
 
+        # Initial conditions to fix sleep time
+        wait = 0
+        elapsed_end = 0
+
         for i in range_func(nr_logs, **range_kvargs):
+            start = time.time()
+
             with open(path, "a") as f:
                 log_str = utils.get_template_log(template, fields)
                 f.write(log_str + "\n")
-                time.sleep(sleep_time)
+
+            elapsed_first = time.time() - start
+
+            start = time.time()
+            wait = sleep_time - elapsed_first - elapsed_end
+            try:
+                time.sleep(wait)
+            except ValueError:
+                pass
+            finally:
+                elapsed_end = time.time() - start - wait
+
     elif generator_type == RAW:
         raise NotImplementedError("Generator type 'raw' is not implemented")
     else:
