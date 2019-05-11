@@ -50,12 +50,18 @@ def log_generator(pattern_conf):
     log.debug(f"[{name}] - generator type: {generator_type}")
     remove_file = pattern_conf.get("remove_file", False)
 
+    # eps correction percentage
+    correction = float(pattern_conf.get("correction", 1.12))
+    log.debug(f"EPS correction percentage: {correction}")
+
     # calculate nr logs and sleep
+    eps = int(round(eps * (1 + correction / 100), 0))
+    log.debug(f"EPS corrected: {eps}")
     nr_logs = eps * time_period
     log.debug(f"[{name}] - Total logs to generate is {nr_logs}")
     sleep_time = 1 / eps
 
-    log.debug(f"[{name}] - Ideal Sleep time between logs is {sleep_time}")
+    log.debug(f"[{name}] - Ideal sleep time between logs is {sleep_time}")
 
     progress_bar = pattern_conf.get("progress_bar", False)
 

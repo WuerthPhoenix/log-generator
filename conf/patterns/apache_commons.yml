@@ -14,9 +14,12 @@ path: /tmp/apache.log
 # remove log file before use it
 remove_file: false
 
-# event per seconds for this pattern
+# event per seconds for this pattern, default 1
 # if specified this value overwrite the common one
 eps: 1
+
+# eps correction percentage, default 1.2
+correction: 1.2
 
 # time period in seconds. This value says how many seconds of logs will be generate
 time_period: 60

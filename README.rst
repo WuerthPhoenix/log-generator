@@ -47,6 +47,7 @@ The main parameters are:
 -  *enabled*: enable/disable this pattern
 -  *path*: path where store the log
 -  *eps*: number of logs per seconds that will be generate
+-  *correction*: eps correction percentage
 -  *time_period*: how many seconds the generating is active
 -  *generator_type*: you can choose which generator use. The common
    value is ``template``, that generate the logs from a template
