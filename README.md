@@ -96,3 +96,6 @@ Options:
 ## TODO
 
  - Generate logs from raw examples
+
+## Apache 2 Open Source License
+This tool can be downloaded, used, and modified free of charge. It is available under the Apache 2 license.
