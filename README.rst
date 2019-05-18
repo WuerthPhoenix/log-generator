@@ -101,5 +101,3 @@ TODO
 ----
 
 -  Generate logs from raw examples
--  Generate logs from kv
--  Send logs on network (ssh)
