@@ -1,4 +1,5 @@
 `Build Status <https://travis-ci.org/WuerthPhoenix/log-generator>`__
+`PyPI version <https://badge.fury.io/py/rlog-generator>`__
 
 Random Log Generator
 ====================

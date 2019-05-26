@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/WuerthPhoenix/log-generator.svg?branch=develop)](https://travis-ci.org/WuerthPhoenix/log-generator)
+[![PyPI version](https://badge.fury.io/py/rlog-generator.png)](https://badge.fury.io/py/rlog-generator)
 
 # Random Log Generator
 
