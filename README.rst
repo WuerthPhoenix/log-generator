@@ -1,5 +1,4 @@
 `Build Status <https://travis-ci.org/WuerthPhoenix/log-generator>`__
-
 `Coverage
 Status <https://coveralls.io/github/WuerthPhoenix/log-generator?branch=develop>`__
 

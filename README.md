@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/WuerthPhoenix/log-generator.svg?branch=develop)](https://travis-ci.org/WuerthPhoenix/log-generator)
-
 [![Coverage Status](https://coveralls.io/repos/github/WuerthPhoenix/log-generator/badge.svg?branch=develop)](https://coveralls.io/github/WuerthPhoenix/log-generator?branch=develop)
 
 # Random Log Generator
@@ -78,13 +77,11 @@ Usage: rlog-generator [OPTIONS]
 Options:
   -p, --patterns TEXT             Path all log patterns files (only *.yml)
                                   [default: ~/.config/rlog_generator/patterns]
-  -m, --max-concur-req INTEGER    Max concurrent logs generating  [default:
-                                  10]
+  -m, --max-concur-req INTEGER    Max concurrent logs generating  [default: 10]
   -l, --log-level [CRITICAL|ERROR|WARNING|INFO|DEBUG|NOTSET]
                                   Log level on stdout  [default: WARNING]
   --progress-bar / --no-progress-bar
-                                  Enable/Disable progress bar  [default:
-                                  False]
+                                  Enable/Disable progress bar  [default: False]
   --help                          Show this message and exit.
 
 ```
