@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/WuerthPhoenix/log-generator.svg?branch=develop)](https://travis-ci.org/WuerthPhoenix/log-generator)
+
 # Random Log Generator
 
 Generator of random logs for multiple types of technologies.

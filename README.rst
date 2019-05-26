@@ -1,3 +1,5 @@
+`Build Status <https://travis-ci.org/WuerthPhoenix/log-generator>`__
+
 Random Log Generator
 ====================
 
