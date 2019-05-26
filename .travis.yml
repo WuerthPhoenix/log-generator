@@ -23,5 +23,14 @@ script:
 after_success:
     - coveralls
 
+deploy:
+    provider: pypi
+    user: fmantuano
+    password:
+        secure: "Wzx7Sqj7THGJA6viY2b8CV5g5SlVmjCCLYUWaHOLkScWGh5nbVTqFlsYZP+RRjaB6FUz1NAgfBF7FELdWRv2c9xr9xu2ZAeJna0NjY5UvPl1SkLTC4kIeXT0fUpGYvNtI9g5+vp1PINTCEWQ6ZDEHyhMhx9GxI6PQgXZTKJher3+edM2XngeZry99xLjb8vYmbLHS+4jNCrb9K6wNcbkbyQbeneigQ/RyTdpsPg8cuSLk38zkfdfnKSDfpt5reQiNbu1CiER19glNWDRI4/qs9qei9R17d+ZUqWT3T6FUg77YNg1ak+gqlN5FaQO/qcY2DAh1Mz2ApFjF909dPEAKCFSQVyHoc457iKJl6eROOyE9rp0mbH3Hu/gijQskNleaSAgtmKWZfHAC8C+dMEU0PNucwmspkzZ17KMTQHddjdWZhUwZZQz1eyeK4EokmU27FSWcnL7Ep86nqR1DrPp/sc9HY9XPmVXloD2M/f8/es1V/0pCqzKoixNrAYDP1Uq5YUxug4IR+reFr6FSZNuIK5ZquntpMO/uEePabmeotyHNWKSTWfJgQag6NNoPOxMqYrPbafez+lcgq9J+9Ot6N7psPXX9h0IzrCYd/VirboxsJEwV71WpAiolQ9Zv6jJaOBKPKIwHXLwA//83oN2CIUxfY5W9i7nuqs2x9GSzbo="
+    on:
+        tags: true
+        branch: master
+
 notifications:
     email: false

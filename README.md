@@ -1,22 +1,20 @@
 [![Build Status](https://travis-ci.org/WuerthPhoenix/log-generator.svg?branch=develop)](https://travis-ci.org/WuerthPhoenix/log-generator)
-[![Coverage Status](https://coveralls.io/repos/github/WuerthPhoenix/log-generator/badge.svg?branch=develop)](https://coveralls.io/github/WuerthPhoenix/log-generator?branch=develop)
 
 # Random Log Generator
 
 Generator of random logs for multiple types of technologies.
 
 This tool can generate all kinds of logs starting from templates.
-Foreach log you should create a pattern file in YAML format, like in [conf](conf/) folder examples.
+You should create a pattern file in YAML format foreach log that you want to generate, like in [conf/patterns](conf/patters) examples.
 
-If more than one patterns are specified, the tool runs all in parallel. It's possible to run 100 generating in parallel.
-
+If more than one patterns are specified in patterns folder, all logs are generated in parallel. It's possible to generate 100 logs in parallel.
 
 ## Install
 
 Clone repository
 
 ```
-git clone url_repository
+git clone https://github.com/WuerthPhoenix/log-generator.git
 ```
 
 and install with `setup.py`:
@@ -33,36 +31,36 @@ or use `pip`:
 $ pip install rlog-generator
 ```
 
-
 ## Pattern file
 
-A pattern file has many parameters that are explain in the examples of this repository.
+A pattern file has many parameters.
 
-The tool loads all files with `.yml` extension in `patterns` folder.
-
-The main parameters are:
-
- - _name_: name of log
- - _enabled_: enable/disable this pattern
- - _path_: path where store the log
- - _eps_: number of logs per seconds that will be generate
- - _correction_: eps correction percentage
- - _time_period_: how many seconds the generating is active
- - _generator_type_: you can choose which generator use. The common value is `template`, that generate the logs from a template
- - _examples_: logs of examples
- - _template_: template to use to generate logs
- - _fields_: fields used in template
+| Parameters | Descriptions |
+| ---------- | ------------ |
+| _name_ | name of log
+| _enabled_ | enable/disable this pattern
+| _path_ | path where store the log
+| _eps_ | number of logs per seconds that will be generate
+| _correction_ | eps correction percentage
+| _time_period_ | how many seconds the generating is active
+| _generator_type_ | you can choose which generator use. The common value is `template`, that generate the logs from a template
+| _examples_ | logs of examples
+| _template_ | template to use to generate logs
+| _fields_ | fields used in template
 
 We can have two kinds of fields:
  - _list_: the list fields are used to generate random values from a given list
  - _func_: the func fields enable functions to generate the random values.
 
-The `func` fields start with `func_` and then have the name of function and parameters.
+The `func` fields start with `func_` and then have the name of function. It can also have parameters.
 
 The `func` developed are:
  - `func_randip`: generate a random ip address
  - `func_randint`: generate a random integer from _min_ to _max_
 
+For more details see the examples in folder [conf/patterns](conf/patters).
+
+If you want to contribute with real templates, add them in [patterns](patterns) folder.
 
 ## Command line
 
@@ -86,12 +84,10 @@ Options:
 
 ```
 
-
 ## Features
 
  - Random logging from template
  - Template can be a list of more formats
-
 
 ## TODO
 
