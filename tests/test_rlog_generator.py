@@ -32,7 +32,7 @@ from rlog_generator import rlog_generator, utils, cli
 logging.getLogger().addHandler(logging.NullHandler())
 
 
-class TestRlGenerator(unittest.TestCase):
+class TestRlogGenerator(unittest.TestCase):
     """Tests for `rlog_generator.rlog_generator` module."""
 
     def setUp(self):

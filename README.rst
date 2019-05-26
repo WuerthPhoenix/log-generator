@@ -1,5 +1,8 @@
 `Build Status <https://travis-ci.org/WuerthPhoenix/log-generator>`__
 
+`Coverage
+Status <https://coveralls.io/github/WuerthPhoenix/log-generator?branch=develop>`__
+
 Random Log Generator
 ====================
 
@@ -82,8 +85,7 @@ The installation stores on system the ``rlog-generator`` command line.
 
    Options:
      -p, --patterns TEXT             Path all log patterns files (only *.yml)
-                                     [default: /home/fedelemantuano/.config/rl_ge
-                                     nerator/patterns]
+                                     [default: ~/.config/rlog_generator/patterns]
      -m, --max-concur-req INTEGER    Max concurrent logs generating  [default:
                                      10]
      -l, --log-level [CRITICAL|ERROR|WARNING|INFO|DEBUG|NOTSET]
