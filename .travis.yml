@@ -16,8 +16,8 @@ install:
 # command to run tests
 script:
     - python -m unittest discover -s tests -f -v
-    - python -m rlog_generator.cli -v
-    - python -m rlog_generator.cli -h
+    - python -m rlog_generator.cli --version
+    - python -m rlog_generator.cli --help
 
 after_success:
     - coveralls
