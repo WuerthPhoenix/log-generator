@@ -5,7 +5,7 @@
 Generator of random logs for multiple types of technologies.
 
 This tool can generate all kinds of logs starting from templates.
-You should create a pattern file in YAML format foreach log that you want to generate, like in [conf/patterns](conf/patters) examples.
+You should create a pattern file in YAML format foreach log that you want to generate, like in [conf/patterns](conf/patterns) examples.
 
 If more than one patterns are specified in patterns folder, all logs are generated in parallel. It's possible to generate 100 logs in parallel.
 
@@ -58,7 +58,7 @@ The `func` developed are:
  - `func_randip`: generate a random ip address
  - `func_randint`: generate a random integer from _min_ to _max_
 
-For more details see the examples in folder [conf/patterns](conf/patters).
+For more details see the examples in folder [conf/patterns](conf/patterns).
 
 If you want to contribute with real templates, add them in [patterns](patterns) folder.
 
