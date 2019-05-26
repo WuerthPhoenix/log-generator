@@ -1,3 +1,3 @@
 # Patterns
 
-All patterns implemented are in this folder.
+The new patterns are added in this folder.

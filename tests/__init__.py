@@ -16,4 +16,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-"""Unit test package for rl_generator."""
+"""Unit test package for rlog_generator."""

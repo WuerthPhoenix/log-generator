@@ -17,25 +17,25 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-"""Tests for `rl_generator.utils` module."""
+"""Tests for `rlog_generator.utils` module."""
 
 
 import logging
 import unittest
 
-from rl_generator import utils
+from rlog_generator import utils
 
 
 logging.getLogger().addHandler(logging.NullHandler())
 
 
 class TestUtils(unittest.TestCase):
-    """Tests for `rl_generator.utils` module."""
+    """Tests for `rlog_generator.utils` module."""
 
     def setUp(self):
         """Set up test fixtures, if any."""
         self.pattern_file = "tests/conf/patterns/apache_commons.yml"
-        self.conf_file = "conf/rl_generator.yml"
+        self.conf_file = "conf/rlog_generator.yml"
         self.pattern = utils.load_config(self.pattern_file)
 
     def tearDown(self):

@@ -1,8 +1,8 @@
 [run]
-source = rl_generator/
+source = rlog_generator/
 
 [report]
-omit = rl_generator/version.py
+omit = rlog_generator/version.py
 
 exclude_lines =
     pragma: no cover

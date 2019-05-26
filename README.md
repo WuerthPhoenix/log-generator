@@ -19,7 +19,7 @@ git clone url_repository
 and install with `setup.py`:
 
 ```
-$ cd rl_generator
+$ cd log-generator
 
 $ python setup.py install
 ```
@@ -27,7 +27,7 @@ $ python setup.py install
 or use `pip`:
 
 ```
-$ pip install file_dist
+$ pip install rlog-generator
 ```
 
 
@@ -63,11 +63,11 @@ The `func` developed are:
 
 ## Command line
 
-The installation stores on system the `rl_generator` command line.
+The installation stores on system the `rlog-generator` command line.
 
 ```
- $ rl_generator --help
-Usage: rl_generator [OPTIONS]
+ $ rlog-generator --help
+Usage: rlog-generator [OPTIONS]
 
   Random Logs Generator Tool.
 

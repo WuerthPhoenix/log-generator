@@ -23,7 +23,7 @@ and install with ``setup.py``:
 
 ::
 
-   $ cd rl_generator
+   $ cd log-generator
 
    $ python setup.py install
 
@@ -31,7 +31,7 @@ or use ``pip``:
 
 ::
 
-   $ pip install file_dist
+   $ pip install rlog-generator
 
 Pattern file
 ------------
@@ -69,12 +69,12 @@ address - ``func_randint``: generate a random integer from *min* to
 Command line
 ------------
 
-The installation stores on system the ``rl_generator`` command line.
+The installation stores on system the ``rlog-generator`` command line.
 
 ::
 
-    $ rl_generator --help
-   Usage: rl_generator [OPTIONS]
+    $ rlog-generator --help
+   Usage: rlog-generator [OPTIONS]
 
      Random Logs Generator Tool.
 
@@ -101,3 +101,9 @@ TODO
 ----
 
 -  Generate logs from raw examples
+
+Apache 2 Open Source License
+----------------------------
+
+This tool can be downloaded, used, and modified free of charge. It is
+available under the Apache 2 license.
