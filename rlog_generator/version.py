@@ -20,7 +20,7 @@ limitations under the License.
 
 __author__ = """Fedele Mantuano"""
 __email__ = 'mantuano.fedele@gmail.com'
-__version__ = '0.1.2'
+__version__ = '0.2.0'
 
 
 if __name__ == "__main__":
