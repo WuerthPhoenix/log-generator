@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """
@@ -16,4 +17,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-"""Unit test package for rlog_generator."""
+
+__author__ = """Fedele Mantuano"""
+__email__ = 'mantuano.fedele@gmail.com'
+__version__ = '0.2.0'
+
+
+if __name__ == "__main__":
+    print(__version__)

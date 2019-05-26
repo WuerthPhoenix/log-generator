@@ -1,25 +1,41 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""Tests for `rl_generator.utils` module."""
+"""
+Copyright 2019 Würth Phoenix S.r.l.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+"""
+
+"""Tests for `rlog_generator.utils` module."""
 
 
 import logging
 import unittest
 
-from rl_generator import utils
+from rlog_generator import utils
 
 
 logging.getLogger().addHandler(logging.NullHandler())
 
 
 class TestUtils(unittest.TestCase):
-    """Tests for `rl_generator.utils` module."""
+    """Tests for `rlog_generator.utils` module."""
 
     def setUp(self):
         """Set up test fixtures, if any."""
         self.pattern_file = "tests/conf/patterns/apache_commons.yml"
-        self.conf_file = "conf/rl_generator.yml"
+        self.conf_file = "conf/rlog_generator.yml"
         self.pattern = utils.load_config(self.pattern_file)
 
     def tearDown(self):

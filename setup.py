@@ -21,29 +21,26 @@ with open(os.path.join(current, 'requirements.txt')) as f:
     requirements = f.read().splitlines()
 
 __version__ = runpy.run_path(
-    os.path.join(current, "rl_generator", "version.py"))["__version__"]
+    os.path.join(current, "rlog_generator", "version.py"))["__version__"]
 
 
 setup(
-    name='rl_generator',
+    name='rlog-generator',
     author="Fedele Mantuano",
     author_email='mantuano.fedele@gmail.com',
     maintainer="Fedele Mantuano",
     maintainer_email='mantuano.fedele@gmail.com',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
     ],
     description="Generator of random logs for multiple types of technologies",
     entry_points={
         'console_scripts': [
-            'rl_generator=rl_generator.cli:main',
+            'rlog-generator=rlog_generator.cli:main',
         ],
     },
     platforms=["Linux"],
@@ -51,9 +48,9 @@ setup(
     long_description=long_description + '\n\n' + history,
     include_package_data=True,
     keywords=['log', 'generator', 'random'],
-    packages=find_packages(include=['rl_generator']),
+    packages=find_packages(include=['rlog_generator']),
     setup_requires=requirements,
-    url='https://github.com/fedelemantuano/rl_generator',
+    url='https://github.com/WuerthPhoenix/log-generator',
     version=__version__,
     zip_safe=False,
 )
