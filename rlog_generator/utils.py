@@ -25,6 +25,9 @@ import random
 import socket
 import struct
 import sys
+import uuid
+import time
+from randmac import RandMac
 
 import yaml
 
@@ -59,6 +62,13 @@ def randint(min_value, max_value):
     """
     return random.randint(int(min_value), int(max_value))
 
+def randmac():
+    """Return random MAC address
+    
+    Returns:
+        str -- MAC address
+    """
+    return RandMac()
 
 def randip():
     """Return random IP address
@@ -67,6 +77,22 @@ def randip():
         str -- IP address
     """
     return socket.inet_ntoa(struct.pack('>I', random.randint(1, 0xffffffff)))
+
+def randuuid():
+    """Return random uuid
+
+    Returns:
+        str -- uuid
+    """
+    return uuid.uuid4()
+
+def timestamp():
+    """Return epoch timestamp
+
+    Returns:
+        str -- epoch timestamp
+    """
+    return round(time.time())
 
 
 def get_function(function_str, module=sys.modules[__name__]):
