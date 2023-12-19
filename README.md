@@ -14,22 +14,42 @@ If more than one patterns are specified in patterns folder, all logs are generat
 
 Clone repository
 
-```
+```bash
 git clone https://github.com/WuerthPhoenix/log-generator.git
 ```
 
 and install with `setup.py`:
 
-```
-$ cd log-generator
+```bash
+cd log-generator
 
-$ python setup.py install
+python setup.py install
 ```
 
 or use `pip`:
 
+```bash
+pip install rlog-generator
 ```
-$ pip install rlog-generator
+
+## Docker
+
+Clone repository
+
+```bash
+git clone https://github.com/WuerthPhoenix/log-generator.git
+```
+
+build docker
+
+```bash
+docker build -t log-generator:latest .
+```
+
+and use it
+
+```bash
+docker run -v `pwd`/conf/patterns:/root/.config/rlog_generator/patterns log-generator
 ```
 
 ## Pattern file
@@ -70,7 +90,7 @@ If you want to contribute with real templates, add them in [patterns](patterns) 
 
 The installation stores on system the `rlog-generator` command line.
 
-```
+```bash
  $ rlog-generator --help
 Usage: rlog-generator [OPTIONS]
 
