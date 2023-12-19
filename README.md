@@ -49,7 +49,7 @@ docker build -t log-generator:latest .
 and use it
 
 ```bash
-docker run -v `pwd`/conf/patterns:/root/.config/rlog_generator/patterns log-generator
+docker run -v `pwd`/conf/:/root/.config/rlog_generator/ log-generator
 ```
 
 ## Pattern file
