@@ -5,7 +5,7 @@
 name: dns
 
 # if true this pattern is enabled and it will be used
-enabled: true
+enabled: false
 
 # path where store the log. If the path doesn't exist will be created
 path: /tmp/dns.log
