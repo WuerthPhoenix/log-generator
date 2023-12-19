@@ -40,6 +40,7 @@ A pattern file has many parameters.
 | ---------- | ------------ |
 | _name_ | name of log
 | _enabled_ | enable/disable this pattern
+| _stdout_ | log to stdout instead of file
 | _path_ | path where store the log
 | _eps_ | number of logs per seconds that will be generate
 | _correction_ | eps correction percentage
@@ -58,6 +59,8 @@ The `func` fields start with `func_` and then have the name of function. It can 
 The `func` developed are:
  - `func_randip`: generate a random ip address
  - `func_randint`: generate a random integer from _min_ to _max_
+ - `func_randmac`: generate a random MAC address
+ - `func_randuuid`: generate a random UUID address
 
 For more details see the examples in folder [conf/patterns](conf/patterns).
 
