@@ -48,6 +48,8 @@ A pattern file has many parameters.
 +-------------------------------+--------------------------------------+
 | *enabled*                     | enable/disable this pattern          |
 +-------------------------------+--------------------------------------+
+| *stdout*                      | log to stdout instead of file        |
++-------------------------------+--------------------------------------+
 | *path*                        | path where store the log             |
 +-------------------------------+--------------------------------------+
 | *eps*                         | number of logs per seconds that will |
@@ -79,7 +81,8 @@ function. It can also have parameters.
 
 The ``func`` developed are: - ``func_randip``: generate a random ip
 address - ``func_randint``: generate a random integer from *min* to
-*max*
+*max* - ``func_randmac``: generate a random MAC address 
+- ``func_randuuid``: generate a random UUID address
 
 For more details see the examples in folder
 `conf/patterns <conf/patterns>`__.

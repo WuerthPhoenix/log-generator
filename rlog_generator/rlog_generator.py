@@ -54,6 +54,7 @@ def log_generator(pattern_conf):
         str -- name of logging pattern
     """
     name = pattern_conf["name"]
+    stdout = pattern_conf["stdout"]
     path = pattern_conf["path"]
     log_path = os.path.dirname(path)
     log.debug(f"[{name}] - Generating logging for {name}")
@@ -113,22 +114,39 @@ def log_generator(pattern_conf):
 
         for i in range_func(nr_logs, **range_kvargs):
             start = time.time()
+            template = random.choice(pattern_conf["template"])
+            log_str = utils.get_template_log(template, fields)
 
-            with open(path, "a") as f:
-                template = random.choice(pattern_conf["template"])
-                log_str = utils.get_template_log(template, fields)
-                f.write(log_str + "\n")
+            if stdout:
+                print(log_str)  # Output to stdout
+            else:
+                # if remove_file:
+                #     try:
+                #         os.remove(path)
+                #         log.debug(f"[{name}] - File {path} removed")
+                #     except OSError:
+                #         log.debug(f"[{name}] - File {path} doesn't exist")
 
-            elapsed_first = time.time() - start
+                # # create folder log
+                # if not os.path.exists(log_path):
+                #     log.debug(f"[{name}] - Created path {log_path}")
+                #     os.makedirs(log_path)
+                        
+                with open(path, "a") as f:
+                    template = random.choice(pattern_conf["template"])
+                    log_str = utils.get_template_log(template, fields)
+                    f.write(log_str + "\n")
 
-            start = time.time()
-            wait = sleep_time - elapsed_first - elapsed_end
-            try:
-                time.sleep(wait)
-            except ValueError:
-                pass
-            finally:
-                elapsed_end = time.time() - start - wait
+                elapsed_first = time.time() - start
+
+                start = time.time()
+                wait = sleep_time - elapsed_first - elapsed_end
+                try:
+                    time.sleep(wait)
+                except ValueError:
+                    pass
+                finally:
+                    elapsed_end = time.time() - start - wait
 
     elif generator_type == RAW:
         raise NotImplementedError("Generator type 'raw' is not implemented")
