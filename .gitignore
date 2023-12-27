@@ -103,3 +103,6 @@ ENV/
 
 # VS code
 .vscode/
+
+# Elastic conf
+conf/elastic.yaml
