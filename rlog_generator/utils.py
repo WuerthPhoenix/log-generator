@@ -22,17 +22,16 @@ limitations under the License.
 import datetime
 import logging
 import random
-import socket
-import struct
 import sys
-import uuid
-import time
-from randmac import RandMac
+from faker import Faker
 
 import yaml
 
 
 log = logging.getLogger(__name__)
+fake = Faker()
+
+# TODO Implement possibility to seed for repeatable datasets
 
 
 def load_config(yaml_file):
@@ -60,15 +59,15 @@ def randint(min_value, max_value):
     Returns:
         int -- random integer in range [min_value, max_value]
     """
-    return random.randint(int(min_value), int(max_value))
+    return fake.random_int(min=int(min_value), max=int(max_value))
 
 def randmac():
     """Return random MAC address
-    
+
     Returns:
         str -- MAC address
     """
-    return RandMac()
+    return fake.mac_address()
 
 def randip():
     """Return random IP address
@@ -76,7 +75,7 @@ def randip():
     Returns:
         str -- IP address
     """
-    return socket.inet_ntoa(struct.pack('>I', random.randint(1, 0xffffffff)))
+    return fake.ipv4()
 
 def randuuid():
     """Return random uuid
@@ -84,7 +83,7 @@ def randuuid():
     Returns:
         str -- uuid
     """
-    return uuid.uuid4()
+    return fake.uuid4()
 
 def timestamp():
     """Return epoch timestamp
@@ -92,7 +91,8 @@ def timestamp():
     Returns:
         str -- epoch timestamp
     """
-    return round(time.time())
+# TODO defaults to random seconds in the last 30 days. Allow parameter change for more flexibility
+    return round(fake.unix_time(start_datetime=datetime.timedelta(-30)))
 
 
 def get_function(function_str, module=sys.modules[__name__]):

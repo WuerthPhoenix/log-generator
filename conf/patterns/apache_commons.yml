@@ -1,13 +1,13 @@
 ---
-
+stdout: False
 # configuration file of single log pattern
 
 # name of log
 name: apache_common
 
 # if true this pattern is enabled and it will be used
-enabled: false
-
+enabled: true
+elastic: false
 # path where store the log. If the path doesn't exist will be created
 path: /tmp/apache.log
 
@@ -26,20 +26,20 @@ time_period: 60
 
 # generator types:
 # - raw: it gets raw logs from examples and uses them to make logging
-# - template: it uses a template to generate logs 
+# - template: it uses a template to generate logs
 #           (https://docs.python.org/3/library/string.html#custom-string-formatting)
 
-generator_type: raw
+generator_type: template
 
 # logs of example, to use as documentation or use for random generator in raw generator type
 examples:
   - 127.0.0.1 - frank [10/Oct/2000:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326
 
 # log template to random generator
-# for replace the timestamp use this table: 
+# for replace the timestamp use this table:
 # https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior
 # You can use more than one template
-template: 
+template:
   - '{ipaddress} - {user} {:[%d/%b/%Y:%H:%M:%S %z]} "{http_method} {http_request} HTTP/1.0" {http_status_code:d} {http_bytes:d}'
   - '{ipaddress} - - {:[%d/%b/%Y:%H:%M:%S %z]} "{http_method} {http_request} HTTP/1.0" {http_status_code:d} {http_bytes:d}'
 

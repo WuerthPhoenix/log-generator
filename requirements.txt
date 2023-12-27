@@ -1,5 +1,10 @@
-Click==7.0
-tqdm==4.31.1
+certifi==2023.11.17
+click==8.1.7
+elastic-transport==8.11.0
+elasticsearch==8.11.1
+Faker==21.0.0
+python-dateutil==2.8.2
 PyYAML==5.3.1
-randmac==0.1
-uuid==1.30
+six==1.16.0
+tqdm==4.66.1
+urllib3==2.1.0
