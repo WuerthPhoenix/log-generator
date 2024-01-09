@@ -1,4 +1,4 @@
-FROM python:3.11-bookworm
+FROM python:3.12-alpine
 
 COPY . /log-generator
 RUN cd /log-generator &&\
