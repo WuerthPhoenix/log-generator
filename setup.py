@@ -11,10 +11,10 @@ from setuptools import setup, find_packages
 
 current = os.path.realpath(os.path.dirname(__file__))
 
-with io.open(os.path.join(current, 'README.rst'), encoding="utf-8") as f:
+with io.open(os.path.join(current, 'README.md'), encoding="utf-8") as f:
     long_description = f.read()
 
-with io.open(os.path.join(current, 'HISTORY.rst'), encoding="utf-8") as f:
+with io.open(os.path.join(current, 'HISTORY.md'), encoding="utf-8") as f:
     history = f.read()
 
 with open(os.path.join(current, 'requirements.txt')) as f:

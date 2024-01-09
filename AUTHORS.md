@@ -1,9 +1,8 @@
 # Credits
 
-## Development Lead
- 
- - Fedele Mantuano <mantuano.fedele@gmail.com>
+Forked from [WuerthPhoenix](https://github.com/WuerthPhoenix/log-generator/tree/develop) by Fedele Mantuano <mantuano.fedele@gmail.com>
 
 ## Contributors
 
-None yet.
+- Fred Maussion
+- Marc-Antoine LECLERCQ
