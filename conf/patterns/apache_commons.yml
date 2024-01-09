@@ -6,7 +6,7 @@ stdout: False
 name: apache_common
 
 # if true this pattern is enabled and it will be used
-enabled: true
+enabled: false 
 elastic: false
 # path where store the log. If the path doesn't exist will be created
 path: /tmp/apache.log

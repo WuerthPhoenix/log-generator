@@ -69,13 +69,21 @@ def randmac():
     """
     return fake.mac_address()
 
-def randip():
-    """Return random IP address
+def randippub():
+    """Return random Public IP address
 
     Returns:
-        str -- IP address
+        str -- IPv4 Public address
     """
-    return fake.ipv4()
+    return fake.ipv4_public()
+
+def randippriv():
+    """Return random Private IP address
+
+    Returns:
+        str -- IPv4 Private address
+    """
+    return fake.ipv4_private()
 
 def randuuid():
     """Return random uuid
@@ -84,6 +92,87 @@ def randuuid():
         str -- uuid
     """
     return fake.uuid4()
+
+def randfreeemail():
+    """Return random free_email
+
+    Returns:
+        str -- free_email
+    """
+    return fake.free_email()
+
+def randcompanyemail():
+    """Return random company_email
+
+    Returns:
+        str -- company_email
+    """
+    return fake.company_email()
+
+def randuri():
+    """Return random URI
+
+    Returns:
+        str -- URI
+    """
+    return fake.uri()
+
+def randusername():
+    """Return random User Name
+
+    Returns:
+        str -- User Name
+    """
+    return fake.user_name()
+
+def randhostname(levels = 1):
+    """Return random Hostname
+
+    Arguments:
+        levels {int} -- Domain level (default to 1)
+
+    Returns:
+        str -- Hostname
+    """
+    return fake.hostname(levels=int(levels))
+
+def randpassword(length = 8, special_chars = True, digits = True):
+    """Return random password depending on length
+
+    Arguments:
+        length {int} -- min value (default to 8)
+        special_chars {bool} -- Boolean (default to true)
+        digits {bool} -- Boolean (default to true)
+
+    Returns:
+        Str -- random string password
+    """
+    return fake.password(length=int(length), special_chars=bool(special_chars), digits=bool(digits))
+
+def randsentence(nb_words = 4, variable_nb_words = False):
+    """Return random sentence in range [min_value, max_value],
+    including both end points
+
+    Arguments:
+        nb_words {int} -- min value (default to 4)
+        variable_nb_words {bool} -- Boolean (default to False)
+
+    Returns:
+        Str -- random sentence
+    """
+    return fake.sentence(nb_words=int(nb_words), variable_nb_words=bool(variable_nb_words)) 
+
+def randparagraph(nb_sentences = 2, variable_nb_sentences = True):
+    """Return random paragraph with number of sentence as value
+
+    Arguments:
+        nb_sentences {int} -- min value (default to 2)
+        variable_nb_sentences {bool} -- Boolean (default to True)
+
+    Returns:
+        Str -- random paragraph
+    """
+    return fake.paragraph(nb_sentences=int(nb_sentences), variable_nb_sentences=bool(variable_nb_sentences)) 
 
 def timestamp():
     """Return epoch timestamp
