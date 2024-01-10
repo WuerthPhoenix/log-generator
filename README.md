@@ -15,7 +15,7 @@ If more than one patterns are specified in patterns folder, all logs are generat
 Clone repository
 
 ```bash
-git clone https://github.com/WuerthPhoenix/log-generator.git
+git clone https://github.com/fred-maussion/log-generator.git
 ```
 
 and install with `setup.py`:
@@ -26,18 +26,12 @@ cd log-generator
 python setup.py install
 ```
 
-or use `pip`:
-
-```bash
-pip install rlog-generator
-```
-
 ## Docker
 
 Clone repository
 
 ```bash
-git clone https://github.com/WuerthPhoenix/log-generator.git
+git clone https://github.com/fred_maussion/log-generator.git
 ```
 
 build docker
@@ -49,7 +43,7 @@ docker build -t log-generator:latest .
 and use it
 
 ```bash
-docker run -v `pwd`/conf/:/root/.config/rlog_generator/ log-generator
+docker run -v `pwd`/conf/:/root/.config/rlog_generator/ -v `pwd`/logs:/logs/ log-generator
 ```
 
 ## Pattern file
@@ -60,8 +54,12 @@ A pattern file has many parameters.
 | ---------- | ------------ |
 | _name_ | name of log
 | _enabled_ | enable/disable this pattern
-| _stdout_ | log to stdout instead of file
+| _locale_ | generate localized content
+| _stdout_ | log to stdout
+| _elastic_ | log to elastic
+| _log_output_ | log to stdout
 | _path_ | path where store the log
+| _remove_file_ | remove log file before writing into it
 | _eps_ | number of logs per seconds that will be generate
 | _correction_ | eps correction percentage
 | _time_period_ | how many seconds the generating is active
