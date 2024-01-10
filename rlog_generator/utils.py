@@ -23,156 +23,173 @@ import datetime
 import logging
 import random
 import sys
+import yaml
+import os
+import importlib
+
 from faker import Faker
 
-import yaml
-
-
 log = logging.getLogger(__name__)
-fake = Faker()
-
 # TODO Implement possibility to seed for repeatable datasets
-
-
+    
 def load_config(yaml_file):
-    """Return a Python object given a YAML file
+    """Return a Python object given a YAML file."""
+    try:
+        with open(yaml_file, 'r') as f:
+            log.debug(f"Loading file {yaml_file}")
+            config = yaml.load(f, Loader=yaml.FullLoader)
+            # Set locale for Faker based on the configuration
+            if 'locale' in config and config['locale']:
+                global fake
+                fake = Faker(config['locale'])
+            return config
+    except FileNotFoundError:
+        log.error(f"File {yaml_file} not found.")
+        return None
+    except yaml.YAMLError as e:
+        log.error(f"Error parsing YAML file {yaml_file}: {e}")
+        return None
 
-    Arguments:
-        yaml_file {str} -- path of YAML file
+def load_provider_modules():
+    provider_modules = {}
+    providers_dir = os.path.join(os.path.dirname(__file__), 'providers')
+    sys.path.insert(0, providers_dir)
 
-    Returns:
-        obj -- Python object of YAML file
-    """
-    with open(yaml_file, 'r') as f:
-        log.debug(f"Loading file {yaml_file}")
-        return yaml.load(f, Loader=yaml.FullLoader)
+    for filename in os.listdir(providers_dir):
+        if filename.endswith('.py') and filename != '__init__.py':
+            module_name = filename[:-3]
+            module = importlib.import_module(module_name)
+            provider_modules[module_name] = module
 
+    return provider_modules
 
-def randint(min_value, max_value):
-    """Return random integer in range [min_value, max_value],
-    including both end points
+provider_functions = load_provider_modules()
 
-    Arguments:
-        min_value {int} -- min value
-        max_value {int} -- max value
+# def randint(min_value, max_value):
+#     """Return random integer in range [min_value, max_value],
+#     including both end points
 
-    Returns:
-        int -- random integer in range [min_value, max_value]
-    """
-    return fake.random_int(min=int(min_value), max=int(max_value))
+#     Arguments:
+#         min_value {int} -- min value
+#         max_value {int} -- max value
 
-def randmac():
-    """Return random MAC address
+#     Returns:
+#         int -- random integer in range [min_value, max_value]
+#     """
+#     return fake.random_int(min=int(min_value), max=int(max_value))
 
-    Returns:
-        str -- MAC address
-    """
-    return fake.mac_address()
+# def randmac():
+#     """Return random MAC address
 
-def randippub():
-    """Return random Public IP address
+#     Returns:
+#         str -- MAC address
+#     """
+#     return fake.mac_address()
 
-    Returns:
-        str -- IPv4 Public address
-    """
-    return fake.ipv4_public()
+# def randippub():
+#     """Return random Public IP address
 
-def randippriv():
-    """Return random Private IP address
+#     Returns:
+#         str -- IPv4 Public address
+#     """
+#     return fake.ipv4_public()
 
-    Returns:
-        str -- IPv4 Private address
-    """
-    return fake.ipv4_private()
+# def randippriv():
+#     """Return random Private IP address
 
-def randuuid():
-    """Return random uuid
+#     Returns:
+#         str -- IPv4 Private address
+#     """
+#     return fake.ipv4_private()
 
-    Returns:
-        str -- uuid
-    """
-    return fake.uuid4()
+# def randuuid():
+#     """Return random uuid
 
-def randfreeemail():
-    """Return random free_email
+#     Returns:
+#         str -- uuid
+#     """
+#     return fake.uuid4()
 
-    Returns:
-        str -- free_email
-    """
-    return fake.free_email()
+# def randfreeemail():
+#     """Return random free_email
 
-def randcompanyemail():
-    """Return random company_email
+#     Returns:
+#         str -- free_email
+#     """
+#     return fake.free_email()
 
-    Returns:
-        str -- company_email
-    """
-    return fake.company_email()
+# def randcompanyemail():
+#     """Return random company_email
 
-def randuri():
-    """Return random URI
+#     Returns:
+#         str -- company_email
+#     """
+#     return fake.company_email()
 
-    Returns:
-        str -- URI
-    """
-    return fake.uri()
+# def randuri():
+#     """Return random URI
 
-def randusername():
-    """Return random User Name
+#     Returns:
+#         str -- URI
+#     """
+#     return fake.uri()
 
-    Returns:
-        str -- User Name
-    """
-    return fake.user_name()
+# def randusername():
+#     """Return random User Name
 
-def randhostname(levels = 1):
-    """Return random Hostname
+#     Returns:
+#         str -- User Name
+#     """
+#     return fake.user_name()
 
-    Arguments:
-        levels {int} -- Domain level (default to 1)
+# def randhostname(levels = 1):
+#     """Return random Hostname
 
-    Returns:
-        str -- Hostname
-    """
-    return fake.hostname(levels=int(levels))
+#     Arguments:
+#         levels {int} -- Domain level (default to 1)
 
-def randpassword(length = 8, special_chars = True, digits = True):
-    """Return random password depending on length
+#     Returns:
+#         str -- Hostname
+#     """
+#     return fake.hostname(levels=int(levels))
 
-    Arguments:
-        length {int} -- min value (default to 8)
-        special_chars {bool} -- Boolean (default to true)
-        digits {bool} -- Boolean (default to true)
+# def randpassword(length = 8, special_chars = True, digits = True):
+#     """Return random password depending on length
 
-    Returns:
-        Str -- random string password
-    """
-    return fake.password(length=int(length), special_chars=bool(special_chars), digits=bool(digits))
+#     Arguments:
+#         length {int} -- min value (default to 8)
+#         special_chars {bool} -- Boolean (default to true)
+#         digits {bool} -- Boolean (default to true)
 
-def randsentence(nb_words = 4, variable_nb_words = False):
-    """Return random sentence in range [min_value, max_value],
-    including both end points
+#     Returns:
+#         Str -- random string password
+#     """
+#     return fake.password(length=int(length), special_chars=bool(special_chars), digits=bool(digits))
 
-    Arguments:
-        nb_words {int} -- min value (default to 4)
-        variable_nb_words {bool} -- Boolean (default to False)
+# def randsentence(nb_words = 4, variable_nb_words = False):
+#     """Return random sentence in range [min_value, max_value],
+#     including both end points
 
-    Returns:
-        Str -- random sentence
-    """
-    return fake.sentence(nb_words=int(nb_words), variable_nb_words=bool(variable_nb_words)) 
+#     Arguments:
+#         nb_words {int} -- min value (default to 4)
+#         variable_nb_words {bool} -- Boolean (default to False)
 
-def randparagraph(nb_sentences = 2, variable_nb_sentences = True):
-    """Return random paragraph with number of sentence as value
+#     Returns:
+#         Str -- random sentence
+#     """
+#     return fake.sentence(nb_words=int(nb_words), variable_nb_words=bool(variable_nb_words)) 
 
-    Arguments:
-        nb_sentences {int} -- min value (default to 2)
-        variable_nb_sentences {bool} -- Boolean (default to True)
+# def randparagraph(nb_sentences = 2, variable_nb_sentences = True):
+#     """Return random paragraph with number of sentence as value
 
-    Returns:
-        Str -- random paragraph
-    """
-    return fake.paragraph(nb_sentences=int(nb_sentences), variable_nb_sentences=bool(variable_nb_sentences)) 
+#     Arguments:
+#         nb_sentences {int} -- min value (default to 2)
+#         variable_nb_sentences {bool} -- Boolean (default to True)
+
+#     Returns:
+#         Str -- random paragraph
+#     """
+#     return fake.paragraph(nb_sentences=int(nb_sentences), variable_nb_sentences=bool(variable_nb_sentences)) 
 
 def timestamp():
     """Return epoch timestamp
@@ -199,8 +216,22 @@ def get_function(function_str, module=sys.modules[__name__]):
     Returns:
         obj function -- function of module
     """
-    function_str = function_str.split("_")[1]
-    return getattr(module, function_str)
+    # function_str = function_str.split("_")[1]
+    function_str = function_str[len('func_'):]
+
+    if hasattr(module, function_str):
+        def func_wrapper(*args, **kwargs):
+            return getattr(module, function_str)(fake, *args, **kwargs)
+        return func_wrapper
+
+    for module in provider_functions.values():
+        if hasattr(module, function_str):
+            def func_wrapper(*args, **kwargs):
+                return getattr(module, function_str)(fake, *args, **kwargs)
+            return func_wrapper
+
+    raise ValueError(f"Function {function_str} not found in any provider modules.")
+
 
 
 def exec_function_str(function_str):

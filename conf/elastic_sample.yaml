@@ -1,6 +1,6 @@
 #Sample configuration file, don't forget to rename it to elastic.yaml
 
-cloud_id: "CHLOUD_ID"  # Your unique Cloud ID from Elastic Cloud
+cloud_id: "CLOUD_ID"  # Your unique Cloud ID from Elastic Cloud
 api_key: "API_KEY"    # API Key for authentication
 elastic_index: "TARGET_INDEX"           # The name of the index where logs will be stored
 elastic_pipeline: "TARGET_PIPELINE"  # The name of the pipeline that will be applied

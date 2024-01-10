@@ -70,7 +70,6 @@ coverage: ## check code coverage quickly with the default Python
 
 dist: clean rst ## builds source and wheel package
 	python setup.py sdist
-	python setup.py bdist_wheel
 	ls -l dist
 
 install: clean rst ## install the package to the active Python's site-packages

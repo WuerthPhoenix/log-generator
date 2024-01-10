@@ -6,6 +6,8 @@ include README.rst
 include requirements.txt
 include requirements_dev.txt
 
+graft rlog_generator/providers
+
 recursive-include tests *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
