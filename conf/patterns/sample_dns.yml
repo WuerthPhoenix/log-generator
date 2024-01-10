@@ -1,11 +1,19 @@
 ---
-
 # configuration file of single log pattern
 
+# name of log
 name: dns
 
 # if true this pattern is enabled and it will be used
 enabled: false
+
+# Changing the locale of the random generated data, see the available option in Faker website : https://faker.readthedocs.io/en/master/locales.html
+locale: en_US
+
+# Output selection 
+stdout: true
+elastic: false
+log_output : true
 
 # path where store the log. If the path doesn't exist will be created
 path: /tmp/dns.log
