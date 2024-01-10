@@ -28,13 +28,28 @@ python setup.py install
 
 ## Docker
 
+You can use the prebuild docker for now only available for develop branch until project is stable
+
+```bash
+docker pull ghcr.io/fred-maussion/log-generator:develop 
+```
+
+and use it
+
+```bash
+docker run -v `pwd`/conf/:/root/.config/rlog_generator/ -v `pwd`/logs:/logs/ ghcr.io/fred-maussion/log-generator:develop      
+```
+
+
+## Custom Docker
+
 Clone repository
 
 ```bash
 git clone https://github.com/fred_maussion/log-generator.git
 ```
 
-build docker
+modify and then build docker
 
 ```bash
 docker build -t log-generator:latest .
