@@ -106,3 +106,6 @@ ENV/
 
 # Elastic conf
 conf/elastic.yaml
+conf/patterns/poc_*
+.DS_Store
+core
