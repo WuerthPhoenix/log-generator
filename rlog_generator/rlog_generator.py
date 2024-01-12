@@ -159,8 +159,8 @@ def log_generator(pattern_conf):
                     es.index(index=elastic_config["elastic_index"], pipeline=elastic_config["elastic_pipeline"], body={"message": log_str})
                 except Exception as e:
                     log.error(f"Error sending data to Elasticsearch: {e}")
-            
-            if log_output:                        
+
+            if log_output:
                 with open(path, "a") as f:
                     template = random.choice(pattern_conf["template"])
                     log_str = utils.get_template_log(template, fields)

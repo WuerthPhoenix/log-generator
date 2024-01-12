@@ -10,7 +10,7 @@ enabled: false
 # Changing the locale of the random generated data, see the available option in Faker website : https://faker.readthedocs.io/en/master/locales.html
 locale: en_US
 
-# Output selection 
+# Output selection
 stdout: true
 elastic: false
 log_output : true
@@ -33,7 +33,7 @@ time_period: 1
 
 # generator types:
 # - raw: it gets raw logs from examples and uses them to make logging
-# - template: it uses a template to generate logs 
+# - template: it uses a template to generate logs
 #           (https://docs.python.org/3/library/string.html#custom-string-formatting)
 
 generator_type: template
@@ -43,16 +43,16 @@ examples:
   - "Feb  5 09:12:11 ns1 named[80090]: client 192.168.10.12#3261: query: www.server.example IN A"
 
 # log template to random generator
-# for replace the timestamp use this table: 
+# for replace the timestamp use this table:
 # https://docs.python.org/2/library/datetime.html#strftime-and-strptime-behavior
 # You can use more than one template
-template: 
+template:
   - '{:%b  %d %H:%M:%S} ns1 named[{pid}]: client {ipaddress}#{port}: query: {query} IN {dns_type}'
 
 fields:
-  ipaddress: func_randip
-  pid: func_randint 0 100000
-  port: func_randint 1025 65535
+  ipaddress: func_rand_ipv4
+  pid: func_rand_int 0 100000
+  port: func_rand_int 1025 65535
   query:
     - www.server.example
     - google.com

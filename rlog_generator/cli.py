@@ -61,6 +61,7 @@ __version__ = runpy.run_path(
     default=False,
     show_default=True,
     help="Enable/Disable progress bar")
+
 def main(patterns, max_concur_req, log_level, progress_bar):
     """Random Logs Generator Tool."""
 

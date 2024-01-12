@@ -30,8 +30,7 @@ import importlib
 from faker import Faker
 
 log = logging.getLogger(__name__)
-# TODO Implement possibility to seed for repeatable datasets
-    
+
 def load_config(yaml_file):
     """Return a Python object given a YAML file."""
     try:

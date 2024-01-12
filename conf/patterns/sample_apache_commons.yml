@@ -10,7 +10,7 @@ enabled: false
 # Changing the locale of the random generated data, see the available option in Faker website : https://faker.readthedocs.io/en/master/locales.html
 locale: en_US
 
-# Output selection 
+# Output selection
 stdout: true
 elastic: false
 log_output : true
@@ -51,7 +51,7 @@ template:
   - '{ipaddress} - - {:[%d/%b/%Y:%H:%M:%S %z]} "{http_method} {http_request} HTTP/1.0" {http_status_code:d} {http_bytes:d}'
 
 fields:
-  ipaddress: func_randip
+  ipaddress: func_rand_ipv4
   user:
     - frank
     - robert
@@ -72,4 +72,4 @@ fields:
     - 503
     - 201
     - 500
-  http_bytes: func_randint 0 1048576
+  http_bytes: func_rand_int 0 1048576

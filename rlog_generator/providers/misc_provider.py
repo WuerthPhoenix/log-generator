@@ -1,5 +1,3 @@
-from faker import Faker
-
 def rand_binary(fake, length=1048576):
     """
     Generate a random binary blob.

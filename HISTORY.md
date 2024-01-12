@@ -1,5 +1,10 @@
 # History
 
+## 0.3.1 (2024-01-12)
+
+- Added rand_int function
+- Fixed examples to follow new naming convention.
+
 ## 0.3.0 (2024-01-08)
 
 - Added Elasticsearch output
